@@ -11,12 +11,11 @@ import useGenresStore from "../store/genresStore";
 import { useEffect } from "react";
 import useTopTenStore from "../store/toptenStore";
 import Footer from "../components/Footer";
-
 import { genres } from "../utils/genres";
 import { Helmet } from "react-helmet";
+
 const Home = () => {
   const { data, isLoading, error, isError } = useApi("/home");
-
   const setGenres = useGenresStore((state) => state.setGenres);
   const setTopTen = useTopTenStore((state) => state.setTopTen);
 
@@ -34,6 +33,7 @@ const Home = () => {
     notify("error", error.message);
     return;
   }
+
   return (
     <div className="relative">
       <Helmet>
@@ -51,29 +51,29 @@ const Home = () => {
         <Loader className="h-[100dvh]" />
       ) : (
         <>
-          <HeroBanner slides={data?.data?.spotlight} />
+          <HeroBanner slides={data?.data?.spotlightAnimes} />
           <div className="xl:mx-10">
-            <TrendingLayout data={data?.data?.trending} />
+            <TrendingLayout data={data?.data?.trendingAnimes} />
             <div className="grid mx-2 grid-cols-12 gap-4 my-5">
               <DynamicLayout
                 title="Top Airing"
                 endpoint="top-airing"
-                data={data?.data?.topAiring}
+                data={data?.data?.topAiringAnimes}
               />
               <DynamicLayout
                 title="Most Popular"
                 endpoint="most-popular"
-                data={data?.data?.mostPopular}
+                data={data?.data?.mostPopularAnimes}
               />
               <DynamicLayout
                 title="Most Favorite"
                 endpoint="most-favorite"
-                data={data?.data?.mostFavorite}
+                data={data?.data?.mostFavoriteAnimes}
               />
               <DynamicLayout
                 title="Latest Completed"
                 endpoint="completed"
-                data={data?.data?.latestCompleted}
+                data={data?.data?.latestCompletedAnimes}
               />
             </div>
             <div className="row grid my-10 gap-2 justify-center grid-cols-12 sm:mx-2">
@@ -81,17 +81,17 @@ const Home = () => {
                 <MainLayout
                   title="Latest Episode"
                   endpoint="recently-updated"
-                  data={data?.data?.latestEpisode}
+                  data={data?.data?.latestEpisodeAnimes}
                 />
                 <MainLayout
                   title="New Added"
                   endpoint="recently-added"
-                  data={data?.data?.newAdded}
+                  data={data?.data?.newOnScheduleAnimes}
                 />
                 <MainLayout
                   title="Top Upcoming"
                   endpoint="top-upcoming"
-                  data={data?.data?.topUpcoming}
+                  data={data?.data?.topUpcomingAnimes}
                 />
               </div>
               <div className="right col-span-12 xl:col-span-3">
