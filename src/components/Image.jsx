@@ -3,7 +3,6 @@ import SoundsInfo from "../components/SoundsInfo";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
 const Image = ({ data }) => {
   return (
     <div>
@@ -17,16 +16,16 @@ const Image = ({ data }) => {
             wrapperClassName="h-full w-full absolute"
             effect="blur"
             src={data.poster}
-            alt={data.title}
+            alt={data.name}
           />
         </div>
       </Link>
       <Link to={`/anime/${data.id}`}>
         <div
-          title={data.title}
+          title={data.name}
           className="title line-clamp-1 text-sm md:text-base hover:text-primary"
         >
-          <h1>{data.title}</h1>
+          <h1>{data.name}</h1>
         </div>
       </Link>
       {data.type && (
@@ -39,5 +38,4 @@ const Image = ({ data }) => {
     </div>
   );
 };
-
 export default Image;
