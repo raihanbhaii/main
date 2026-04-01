@@ -25,7 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     if (data?.data) {
-      setTopTen(data.data.top10);
+      setTopTen(data.data.top10Animes);
     }
   }, [data]);
 
@@ -86,7 +86,7 @@ const Home = () => {
                 <MainLayout
                   title="New Added"
                   endpoint="recently-added"
-                  data={data?.data?.newOnScheduleAnimes}
+                  data={data?.data?.topUpcomingAnimes}
                 />
                 <MainLayout
                   title="Top Upcoming"
