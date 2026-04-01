@@ -4,19 +4,15 @@ import {
   FaCirclePlay,
   FaClock,
 } from "react-icons/fa6";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-
 import "./hero.css";
 import SoundsInfo from "./SoundsInfo";
 import { Link } from "react-router-dom";
-
 const HeroBanner = ({ slides }) => {
   return (
     <Swiper
@@ -41,41 +37,47 @@ const HeroBanner = ({ slides }) => {
                 <img
                   className="h-full w-full object-cover object-center"
                   loading="lazy"
-                  alt={item.title}
+                  alt={item.name}
                   src={item.poster}
                 />
               </div>
-              <div className=" z-10 ml-2 md:ml-12 min-w-32  md:max-w-2xl absolute bottom-0 sm:bottom-[30px]">
+              <div className="z-10 ml-2 md:ml-12 min-w-32 md:max-w-2xl absolute bottom-0 sm:bottom-[30px]">
                 <div className="text-primary text-base font-semibold mb-2">
                   #{item.rank} Spotlight
                 </div>
                 <div
-                  title={item.title}
-                  className=" title text-lg md:text-2xl xl:text-5xl font-bold mb-6 line-clamp-2"
+                  title={item.name}
+                  className="title text-lg md:text-2xl xl:text-5xl font-bold mb-6 line-clamp-2"
                 >
-                  {item.title}
+                  {item.name}
                 </div>
                 <div className="text-base text-white mb-3 gap-5 hidden md:flex">
                   <div className="item">
                     <FaCirclePlay />
                     <span>{item.type}</span>
                   </div>
-                  <div className="item">
-                    <FaClock />
-                    <span>{item.duration}</span>
-                  </div>
-                  <div className="item">
-                    <FaCalendarDay />
-                    <span>{item.aired}</span>
-                  </div>
-                  <div className="item bg-primary text-black text-sm font-bold px-2 rounded-sm">
-                    <span className="">{item.quality}</span>
-                  </div>
+                  {item.otherInfo?.[1] && (
+                    <div className="item">
+                      <FaClock />
+                      <span>{item.otherInfo[1]}</span>
+                    </div>
+                  )}
+                  {item.otherInfo?.[2] && (
+                    <div className="item">
+                      <FaCalendarDay />
+                      <span>{item.otherInfo[2]}</span>
+                    </div>
+                  )}
+                  {item.otherInfo?.[3] && (
+                    <div className="item bg-primary text-black text-sm font-bold px-2 rounded-sm">
+                      <span>{item.otherInfo[3]}</span>
+                    </div>
+                  )}
                   <div className="item">
                     <SoundsInfo episodes={item.episodes} />
                   </div>
                 </div>
-                <div className="synopsis">{item.synopsis}</div>
+                <div className="synopsis">{item.description}</div>
                 <div className="desi-buttons z-50 text-sm md:text-base mt-5 flex gap-2">
                   <Link
                     to={`/watch/${item.id}`}
@@ -86,7 +88,7 @@ const HeroBanner = ({ slides }) => {
                   </Link>
                   <Link
                     to={`/anime/${item.id}`}
-                    className="bg-btnbg rounded-3xl  px-4 py-1 flex justify-center items-center gap-2"
+                    className="bg-btnbg rounded-3xl px-4 py-1 flex justify-center items-center gap-2"
                   >
                     <span>Detail</span>
                     <FaAngleRight />
@@ -99,5 +101,4 @@ const HeroBanner = ({ slides }) => {
     </Swiper>
   );
 };
-
 export default HeroBanner;
