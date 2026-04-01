@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import config from '../config/config'
 
-const API_BASE_URL = config.serverUrl2
+const API_BASE_URL = "https://anidaku-api.vercel.app/api/v2/hianime"
+
 const fetchData2 = async (url) => {
   try {
     const { data } = await axios.get(API_BASE_URL + url)
@@ -11,7 +11,6 @@ const fetchData2 = async (url) => {
     throw new Error(error)
   }
 }
-
 export const useApi2 = (endpoint) => {
   return useQuery({
     queryKey: [endpoint],
